@@ -22,7 +22,7 @@ DEBUG = False
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'not-so-secret'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['b5392993.ngrok.io', 'http://localhost:8000' , '127.0.0.1']
 
 # Twilio API credentials
 TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -56,7 +56,8 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'bootstrap3',
-    'django_forms_bootstrap'
+    'django_forms_bootstrap',
+    # 'corsheaders',
 )
 
 LOCAL_APPS = (
@@ -67,6 +68,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,6 +79,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'twilio_sample_project.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
@@ -100,10 +104,17 @@ WSGI_APPLICATION = 'twilio_sample_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'browser_calls'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'browser_calls'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

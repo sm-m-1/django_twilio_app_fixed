@@ -17,6 +17,7 @@ function updateCallStatus(status) {
 
 /* Get a Twilio Client token with an AJAX request */
 $(document).ready(function() {
+  console.log("window.location.pathname", window.location.pathname);
     $.get("/support/token", {forPage: window.location.pathname}, function(data) {
         // Set up the Twilio Client Device with the token
         Twilio.Device.setup(data.token);

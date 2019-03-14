@@ -49,7 +49,7 @@ def get_token(request):
         capability.allow_client_incoming('customer')
 
     # Generate the capability token
-    token = capability.generate()
+    token = capability.to_jwt().decode("utf-8")
 
     return JsonResponse({'token': token})
 
@@ -68,4 +68,7 @@ def call(request):
         # to contact support from the home page
         response.client('support_agent')
 
-    return HttpResponse(str(response))
+    response = str(response)
+    probe = response.find(">")
+    response = response[:probe+1] + "<Response>" + response[probe+1:] + "</Response>"
+    return HttpResponse(response)

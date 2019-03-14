@@ -54,7 +54,9 @@
 
     <!-- JavaScript -->
     {% bootstrap_javascript jquery=1 %}
-    <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
+{#    <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>#}
+    <script type="text/javascript"
+src="//media.twiliocdn.com/sdk/js/client/v1.6/twilio.min.js"></script>
 
     {% block page_js %}{% endblock %}
 
